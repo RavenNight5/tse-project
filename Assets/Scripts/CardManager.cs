@@ -9,7 +9,7 @@ public class CardManager : MonoBehaviour
     [Header("Main Cards")]
     [SerializeField][Range(1, 10)] [Tooltip("the minimum card value")] private int cardsMin;                //the minimum card value
     [SerializeField][Range(2, 20)] [Tooltip("the maximum card value")] private int cardsMax;                //the maximum card value
-    [SerializeField][Tooltip("how many of each generalised card you would like")] private int cardCount;    //how many of each general card number there is
+    [SerializeField][Range(1, 10)][Tooltip("how many of each generalised card you would like")] private int cardCount;    //how many of each general card number there is
     
     [Header("Other")]
     [SerializeField][Tooltip("any other cards you wish to add to the stack")] private Card[] specificCards;                 //any other cards (and their count) added on top of the general card pile
