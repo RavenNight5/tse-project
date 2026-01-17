@@ -5691,9 +5691,10 @@ MonoBehaviour:
   cardsMax: 10
   cardCount: 4
   specificCards:
-  - {x: 11, y: 2}
+  - number: 11
+    customCount: 2
   shuffleCount: 1000
-  Stack: 
+  Stack: []
 --- !u!4 &1436758742
 Transform:
   m_ObjectHideFlags: 0

@@ -7,21 +7,21 @@ using UnityEngine.XR.Interaction.Toolkit.Transformers;
 public class CardManager : MonoBehaviour
 {
     [Header("Main Cards")]
-    [SerializeField] private int cardsMin;                  //the minimum card value
-    [SerializeField] private int cardsMax;                  //the maximum card value
-    [SerializeField] private int cardCount;                 //how many of each general card number there is
+    [SerializeField][Range(1, 10)] [Tooltip("the minimum card value")] private int cardsMin;                //the minimum card value
+    [SerializeField][Range(2, 20)] [Tooltip("the maximum card value")] private int cardsMax;                //the maximum card value
+    [SerializeField][Tooltip("how many of each generalised card you would like")] private int cardCount;    //how many of each general card number there is
     
     [Header("Other")]
-    [SerializeField] private Vector2Int[] specificCards;    //any other cards added (and their amounts) on top of the general card pile
-    [SerializeField] private int shuffleCount = 1000;       //how many times the cards should be shuffled     
+    [SerializeField][Tooltip("any other cards you wish to add to the stack")] private Card[] specificCards;                 //any other cards (and their count) added on top of the general card pile
+    [SerializeField][Tooltip("how many times the cards should be randomly swapped")]  private int shuffleCount = 1000;      //how many times the cards should be shuffled     
 
-    [Header("Stack")]
-    public List<int> Stack;
+    [Space]
+    [SerializeField][Tooltip("what holds all of the cards on the stack")] private List<Card> Stack = new List<Card>();    //the stack holding all of the cards
 
     /// <summary>
     /// generates all of the cards using the general and spefic card rules set up
     /// </summary>
-    private void GenerateCards()
+    private void generateCards()
     {
         Debug.Log("Generating Stack Cards");
 
@@ -48,7 +48,6 @@ public class CardManager : MonoBehaviour
             Debug.LogWarning("stack was not empty upon generation: clearing");
             Stack.Clear();
         }
-
         #endregion
 
         //the general loop to add in the cards
@@ -58,17 +57,17 @@ public class CardManager : MonoBehaviour
             //for each time we want the card
             for (int j = 0; j < cardCount; j++)
             {
-                Stack.Add(i);
+                Stack.Add(new Card(i));
             }
         }
 
-        //for each value in the specific cards
+        //for each specific card wanted
         for (int i = 0; i < specificCards.Length; i++)
         {
             //for each time we want the specific card
-            for(int j = 0; j < specificCards[i].y; j++)
+            for(int j = 0; j < specificCards[i].GetCustomCount(); j++)
             {
-                Stack.Add(specificCards[i].x);
+                Stack.Add(specificCards[i]);
             }
         }
     }
@@ -79,7 +78,13 @@ public class CardManager : MonoBehaviour
     /// <param name="times">how many times the RandShuffle should run</param>
     public void RandShuffle(int times)
     {
-        int swap = 0;
+        //handles if the shuffleCount is negative
+        if (times <= 0)
+        {
+            Debug.LogWarning("shuffling set to 0 or less: no shuffling has been done");
+        }
+
+        Card swap = null;
         int pos1;
         int pos2;
 
@@ -93,7 +98,7 @@ public class CardManager : MonoBehaviour
             //gaurantees the positions are different
             while (pos2 == pos1)
             {
-                pos2 = Stack[Random.Range(0, Stack.Count)];
+                pos2 = Random.Range(0, Stack.Count);
             }
 
             //swaps positions
@@ -107,19 +112,28 @@ public class CardManager : MonoBehaviour
     /// <summary>
     /// allows a player to pull a card from the stack
     /// </summary>
-    /// <returns>returns the int of the card</returns>
-    public int PullCard()
+    /// <returns>returns the card</returns>
+    public Card PullCard()
     {
         //handles if the Stack is empty
         if (Stack.Count == 0)
         {
-            Debug.LogWarning("Stack is empty: returning -1");
-            return -1;
+            Debug.LogWarning("Stack is empty: returning null");
+            return null;
         }
 
-        int card = Stack[Stack.Count - 1];
+        Card card = Stack[Stack.Count - 1];
         Stack.RemoveAt(Stack.Count - 1);
         return card;
+    }
+
+    //debug function used to showcase the cards
+    private void showCards()
+    {
+        for (int i = 0; i < Stack.Count; i++) 
+        {
+            print(Stack[i].GetNumber());
+        }
     }
 
     //temporary debug function used to give basic controls to the functions
@@ -132,7 +146,15 @@ public class CardManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            GenerateCards();
+            generateCards();
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            showCards();
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            print(PullCard().GetNumber());
         }
     }
 }
