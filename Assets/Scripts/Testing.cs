@@ -82,6 +82,14 @@ public static class Testing
             Debug.LogError("the pulled card does not match what was expected");
         }
 
+        //checks to see if the stack has decreaced
+        cards = StackHolder.GetStackCards();
+        if (cards.Length >= 36)
+        {
+            stackpass = false;
+            Debug.LogError("card has not been taken from the stack");
+        }
+
         //tests the shuffle function
         StackHolder.RandShuffle(1000);
         cards = StackHolder.GetStackCards();
