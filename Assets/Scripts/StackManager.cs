@@ -66,5 +66,10 @@ public class StackManager : MonoBehaviour
         {
             print(StackHolder.PullCard().GetNumber());
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Testing.TestStack();
+        }
     }
 }

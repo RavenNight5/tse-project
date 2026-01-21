@@ -117,7 +117,10 @@ public static class StackHolder
         return card;
     }
 
-    //debug function used to get all the cards in the stack
+    /// <summary>
+    /// get all the cards in the stack
+    /// </summary>
+    /// <returns>an array containing all the collected cards currently in the stack</returns>
     public static Card[] GetStackCards()
     {
         Card[] cards = new Card[stack.Count];
