@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit.Transformers;
 public class CardManager : MonoBehaviour
 {
     [Header("Prefabs")]
-    public GameObject CardPrefab;
+    [SerializeField] public GameObject CardPrefab;
 
     [Space]
     [Header("Main Cards")]

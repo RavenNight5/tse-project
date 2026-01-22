@@ -1,7 +1,4 @@
 using System.Collections.Generic;
-using NUnit.Framework;
-using TMPro;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -92,7 +89,7 @@ public class GameManager : MonoBehaviour
     public void PlayerSetCount(Slider slider) { PlayerCount = (int)slider.value; }
 
     // Set the value of the dice (called when submit pressed)
-    public void SetDice(Dropdown dropdown=null)
+    public void SetDice()
     {
         int[] die = new int[2];
 

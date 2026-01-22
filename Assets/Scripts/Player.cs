@@ -115,7 +115,15 @@ public class Player : MonoBehaviour
     // Skipping/end of turn
     public void EndOfTurn()
     {
-        selectedCards.Clear();
+        if (selectedCards.Count > 0)
+        {
+            foreach (var card in selectedCards)
+            {
+                DeselectCard(-1, card);
+            }
+
+            selectedCards.Clear();
+        }
 
         _totalRollValue = 0;
         _selectedTotal = 0;
