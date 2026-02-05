@@ -1,30 +1,26 @@
-using System;
 using TMPro;
 using UnityEngine;
 
 [System.Serializable]
 public class Card : MonoBehaviour
 {
-    [SerializeField] public bool Selected = false;
+    [SerializeField] public bool Selected = false;      //card is selected for play
 
-    [SerializeField] private GameObject defaultCard;
-    [SerializeField] private GameObject selectedCard;
+    [SerializeField] private GameObject defaultCard;        //visual to showcase it isn't selected (I think)
+    [SerializeField] private GameObject selectedCard;       //visual to showcase is selected
 
-    [SerializeField] private TMP_Text[] numberLabels;
+    [SerializeField] private TMP_Text[] numberLabels;   //the text fields where the number should be displayed
 
     private int _number;  //the number attatched to the card
     private int _customCount;  //only used for specific cards, allows the card to be added this many times
 
-    private CardManager _cardManager;
+    private CardManager _cardManager;       //the manager that generates and handles all of the card stacks
 
-    ////constructor
-    //public Card(int number)
-    //{
-    //    this._number = number;
-
-    //    CreateCard();
-    //}
-
+    /// <summary>
+    /// creates the card and sets up it's labels to be correct
+    /// </summary>
+    /// <param name="number">the number to instantiate the card with</param>
+    /// <param name="cm">the card manager that needs to be pulled in</param>
     public void CreateCard(int number, CardManager cm)
     {
         _number = number;
@@ -36,7 +32,10 @@ public class Card : MonoBehaviour
         _cardManager = cm;
     }
 
-    // When the card is clicked by the player
+
+    /// <summary>
+    /// When the card is clicked by the player
+    /// </summary>
     public void Clicked()
     {
         if (transform.parent.tag != "PlayerHand") { return; }
@@ -68,6 +67,10 @@ public class Card : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="onlyVisual"></param>
     public void Deselect(bool onlyVisual=false)
     {
         print("Deselected");
@@ -85,5 +88,9 @@ public class Card : MonoBehaviour
     /// <returns>returns the number attatched to the card</returns>
     public int GetNumber() { return _number; }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public int GetCustomCount() { if (_customCount >= 2 && _customCount <= 14) { return _customCount; } else { return 0; } }
 }

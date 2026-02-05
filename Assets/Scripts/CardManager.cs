@@ -22,8 +22,8 @@ public class CardManager : MonoBehaviour
     //[Space]
     //[SerializeField][Tooltip("what holds all of the cards on the stack")] private List<Card> Stack = new List<Card>();    //the stack holding all of the cards
 
-    private Transform _stack;
-    private GameManager _gameManager;
+    private Transform _stack;               //the draw stack ( I think?)
+    private GameManager _gameManager;       //the game manager that does things (needs better explination here)
 
     [SerializeField] private List<GameObject> _stackedCards = new List<GameObject>();  // Holds game objects of the stacked cards - replacing List<Card> Stack; the GameObject can serve as a reference to the card class
 
@@ -191,7 +191,7 @@ public class CardManager : MonoBehaviour
     /// <summary>
     /// allows a player to pull a card from the stack
     /// </summary>
-    /// <returns>returns the card</returns>
+    /// <returns>returns the pulled card</returns>
     public GameObject PullCard(bool forHand)
     {
         //handles if the Stack is empty
@@ -229,6 +229,10 @@ public class CardManager : MonoBehaviour
         return card;
     }
 
+    /// <summary>
+    /// choses the starting card to be placed into the play stack
+    /// </summary>
+    /// <returns>the card GameObject to be played first</returns>
     public GameObject PickStartingcard()
     {
         // If there are no cards available try to generate them automatically once.
@@ -255,15 +259,32 @@ public class CardManager : MonoBehaviour
         return card;
     }
 
+    /// <summary>
+    /// checks to see if the card can be slected
+    /// </summary>
+    /// <param name="value">the value of the card</param>
+    /// <returns>a string for some reason?</returns>
     public string CheckIfCanSelect(int value)
     {
         return _gameManager.CurrentPlayer.CheckIfCanSelect(value);
     }
 
+
+    /// <summary>
+    /// selects a card to be played
+    /// </summary>
+    /// <param name="value">the value of the card selected</param>
+    /// <param name="card">the card selected to be played</param>
     public void SelectCard(int value, GameObject card)
     {
         _gameManager.CurrentPlayer.SelectedCard(value, card);
     }
+
+    /// <summary>
+    /// deselects a card to be played
+    /// </summary>
+    /// <param name="value">the value of the card</param>
+    /// <param name="card">the GameObjectg of the card</param>
     public void DeselectCard(int value, GameObject card)
     {
         _gameManager.CurrentPlayer.DeselectCard(value, card);
@@ -279,36 +300,8 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    //temporary debug function used to give basic controls to the functions
-    //please change back input handling to the Input System Package when no longer in use
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.S))
-    //    {
-    //        RandShuffle(shuffleCount);
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.LeftShift))
-    //    {
-    //        GenerateCards();
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        showCards();
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.W))
-    //    {
-    //        var pulled = PullCard(true);
-    //        if (pulled != null)
-    //        {
-    //            print(pulled.GetComponent<Card>().GetNumber());
-    //        }
-    //        else
-    //        {
-    //            print("Pulled card was null.");
-    //        }
-    //    }
-    //}
 
+    //proper handling of functions using UI buttons
     public void ButtonPressedGenerate() { GenerateCards(); }
     public void ButtonPressedShow() { showCards(); }
     public void ButtonPressedPull() { var c = PullCard(true); if (c != null) c.GetComponent<Card>().GetNumber(); }
