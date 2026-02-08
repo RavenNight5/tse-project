@@ -126,7 +126,8 @@ public class GameManager : MonoBehaviour
 
         _currentPlayer = 0;
 
-        _cardManager.GenerateCards();
+        _cardManager.GenerateCards();  // Generate pile of cards
+        _cardManager.RandShuffle(800);  // Shuffle cards
 
         SetDice();
 
@@ -137,6 +138,7 @@ public class GameManager : MonoBehaviour
         diceRoll.SetActive(false);
 
         GameObject startingCard = _cardManager.PickStartingcard();
+        startingCard.GetComponent<Card>().Flip();
         _placedManager.ResetPlaced(startingCard);
     }
 }

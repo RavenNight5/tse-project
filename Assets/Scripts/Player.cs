@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
 
     public void AddCardToHand(GameObject card)
     {
+        card.GetComponent<Card>().Flip();
         card.transform.SetParent(playerHand);
         Hand.Add(card);
     }
@@ -62,6 +63,8 @@ public class Player : MonoBehaviour
     {
         if (value != -1) { _selectedTotal -= value; selectedCards.Remove(card); }
         else { _selectedTotal = 0; }  // Deselect all cards
+
+        card.GetComponent<Card>().Deselect(true);
 
         updateSelectedTotalText();
     }

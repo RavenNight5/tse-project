@@ -6,9 +6,11 @@ using UnityEngine;
 public class Card : MonoBehaviour
 {
     [SerializeField] public bool Selected = false;
+    [SerializeField] public bool FaceDown = true;
 
     [SerializeField] private GameObject defaultCard;
     [SerializeField] private GameObject selectedCard;
+    [SerializeField] private GameObject hiddenCard;
 
     [SerializeField] private TMP_Text[] numberLabels;
 
@@ -33,7 +35,27 @@ public class Card : MonoBehaviour
             label.SetText(_number.ToString());
         }
 
+        defaultCard.SetActive(false);
+        selectedCard.SetActive(false);
+        hiddenCard.SetActive(true);
+
         _cardManager = cm;
+    }
+
+    public void Flip()
+    {
+        if (FaceDown == false)
+        {
+            hiddenCard.SetActive(true);
+            defaultCard.SetActive(false);
+        }
+        else
+        {
+            defaultCard.SetActive(true);
+            hiddenCard.SetActive(false);
+        }
+
+        FaceDown = !FaceDown;
     }
 
     // When the card is clicked by the player
@@ -51,7 +73,7 @@ public class Card : MonoBehaviour
 
                 print("Selected!");
                 selectedCard.SetActive(true);
-                defaultCard.SetActive(false);
+                //defaultCard.SetActive(false);
 
                 Selected = true;
             }
@@ -71,7 +93,7 @@ public class Card : MonoBehaviour
     public void Deselect(bool onlyVisual=false)
     {
         print("Deselected");
-        defaultCard.SetActive(true);
+        //defaultCard.SetActive(true);
         selectedCard.SetActive(false);
 
         if (!onlyVisual) { _cardManager.DeselectCard(_number, gameObject); }
