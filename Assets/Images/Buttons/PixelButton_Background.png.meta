@@ -167,40 +167,18 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
-        height: 80
+        width: 90
+        height: 90
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 15, y: 15, z: 15, w: 15}
+      pivot: {x: 0, y: 0}
+      border: {x: 30, y: 40, z: 40, w: 30}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a4d613da6246bf49a9ab5342907713a
-      internalID: 978653821
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PixelButton_Background_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 15, y: 15, z: 15, w: 15}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d834ce9d46170264ca8230306ba5afea
-      internalID: -1464633673
+      spriteID: e3b78b9d9119e9c47a6f5a5b8960f601
+      internalID: 1939180188
       vertices: []
       indices: 
       edges: []
@@ -209,7 +187,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 3b83c4f0ec61b1e41b2f764ad12c753a
+    spriteID: 28d3b41f8f6a8924aa796b6e769ddae0
     internalID: 0
     vertices: []
     indices: 
@@ -219,8 +197,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PixelButton_Background_0: 978653821
-      PixelButton_Background_1: -1464633673
+      PixelButton_Background_0: 1939180188
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
