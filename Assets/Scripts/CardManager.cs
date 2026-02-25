@@ -250,6 +250,8 @@ public class CardManager : MonoBehaviour
             }
         }
 
+        Debug.Log("Picking starting card from stack.");
+
         GameObject card = PullCard(false);
 
         return card;
