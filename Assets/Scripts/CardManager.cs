@@ -253,6 +253,7 @@ public class CardManager : MonoBehaviour
         Debug.Log("Picking starting card from stack.");
 
         GameObject card = PullCard(false);
+        _gameManager.PlaceCards(card.GetComponent<Card>().GetNumber(), new List<GameObject> { card });
 
         return card;
     }
