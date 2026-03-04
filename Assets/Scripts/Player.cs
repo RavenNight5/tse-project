@@ -98,6 +98,13 @@ public class Player : MonoBehaviour
 
         if (_gameManager.GetCurrentPlacedValue() <= _selectedTotal)
         {
+            if (selectedCards.Count == 0) // requires cards to be selected to place
+            {
+                Debug.Log("No cards selected to place!");
+                return;
+            }
+
+
             _gameManager.PlaceCards(_selectedTotal, selectedCards);
 
             // Remove the selected cards from the player's hand
