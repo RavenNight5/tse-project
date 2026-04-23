@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -5,6 +6,7 @@ public class DeckTap : MonoBehaviour
 {
     [SerializeField] private int val = 12;
     [SerializeField] private string output = "pressed Deck";
+    [SerializeField] private TMP_Text show;
 
     // Update is called once per frame
     void Update()
@@ -38,6 +40,11 @@ public class DeckTap : MonoBehaviour
                     {
                         //prints the output message
                         print(output);
+
+                        //DEMO show value in UI
+                        show.text = "pressed : " + Random.Range(1, 14);
+                        //end
+                        return;
                     }
                 }
             }

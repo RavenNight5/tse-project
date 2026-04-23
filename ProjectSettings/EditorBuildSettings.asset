@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AR demos/AR Template Demo.unity
     guid: 91c4c54190d39b941a55249cfdeefe4f
+  - enabled: 1
+    path: Assets/Scenes/DieDemo.unity
+    guid: 88ea05cd1ad191f4a8e6b9ead0d3c920
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 0465d33c6aee55f44b0237db8b0e0259, type: 2}
