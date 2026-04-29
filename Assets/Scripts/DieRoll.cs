@@ -21,7 +21,7 @@ public class DieRoll : MonoBehaviour
         if (rb.angularVelocity == Vector3.zero && val == 0)
         {
             //DEMO - just pick a random number from 1 - 6
-            val = Random.Range(1, 7);
+            val = Random.Range(1, 7)
         }
     }
 

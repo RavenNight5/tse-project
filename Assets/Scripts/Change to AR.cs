@@ -17,6 +17,7 @@ public class ChangetoAR : MonoBehaviour
 
     public void Change()
     {
+        print("pressed");
         SceneManager.LoadScene("AR Template Demo");
     }
 }

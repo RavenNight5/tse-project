@@ -17,6 +17,7 @@ public class ChangetoDice : MonoBehaviour
 
     public void Change()
     {
+        print("pressed");
         SceneManager.LoadScene("DieDemo");
     }
 }

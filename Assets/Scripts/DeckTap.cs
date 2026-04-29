@@ -1,10 +1,10 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class DeckTap : MonoBehaviour
 {
-    [SerializeField] private int val = 12;
     [SerializeField] private string output = "pressed Deck";
     [SerializeField] private TMP_Text show;
 
@@ -19,6 +19,7 @@ public class DeckTap : MonoBehaviour
             // Check if the touch is on a UI element
             if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
             {
+                SceneManager.LoadScene("DieDemo");
                 return; // Ignore the touch if it's on a UI element
             }
             // Check if the touch phase just began (indicating the player has just touched the screen).
