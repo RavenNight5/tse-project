@@ -786,12 +786,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhysicalDie
   result: 0
-  dice: {fileID: 8958124777907402772, guid: 600e90bedb59d774192029207b17748d, type: 3}
+  dice: {fileID: 2898159044917385328, guid: d4ab3266fe1ecfe46839a10b679cdbc2, type: 3}
   die1: {fileID: 0}
   die1res: 0
   die2: {fileID: 0}
   die2res: 0
   text: {fileID: 1266252604}
+  spinForce: 10
+  pushForce: 1
 --- !u!1 &1266252602
 GameObject:
   m_ObjectHideFlags: 0

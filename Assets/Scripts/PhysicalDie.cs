@@ -13,6 +13,9 @@ public class PhysicalDie : MonoBehaviour
     public int die2res = 0;
     public TMP_Text text;
 
+    [SerializeField] private float spinForce = 10;
+    [SerializeField] private float pushForce = 1;
+
     // Update is called once per frame
     void Update()
     {
@@ -48,8 +51,8 @@ public class PhysicalDie : MonoBehaviour
             if (result != 0 && die1 != null && die2 != null)
             {
                 //clear die after a second
-                Destroy(die1, 1);
-                Destroy(die2, 1);
+                //Destroy(die1, 1);
+                //Destroy(die2, 1);
 
             }
         }
@@ -79,12 +82,12 @@ public class PhysicalDie : MonoBehaviour
 
 
         //set angular velocity to roll fact (needs tuning)
-        die1.GetComponent<Rigidbody>().angularVelocity = new Vector3(Random.value * 100, Random.value * 100, Random.value * 100);
-        die2.GetComponent<Rigidbody>().angularVelocity = new Vector3(Random.value * 100, Random.value * 100, Random.value * 100);
+        die1.GetComponent<Rigidbody>().angularVelocity = new Vector3(Random.value * spinForce, Random.value * spinForce, Random.value * spinForce);
+        die2.GetComponent<Rigidbody>().angularVelocity = new Vector3(Random.value * spinForce, Random.value * spinForce, Random.value * spinForce);
 
         //sets linear velocity to push away
-        die1.GetComponent<Rigidbody>().linearVelocity = Vector3.forward * 2;
-        die2.GetComponent<Rigidbody>().linearVelocity = Vector3.forward * 2;
+        die1.GetComponent<Rigidbody>().linearVelocity = Vector3.forward * pushForce;
+        die2.GetComponent<Rigidbody>().linearVelocity = Vector3.forward * pushForce;
 
     }
 }

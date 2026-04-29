@@ -1,3 +1,4 @@
+using Palmmedia.ReportGenerator.Core;
 using UnityEngine;
 
 public class DieRoll : MonoBehaviour
@@ -20,8 +21,36 @@ public class DieRoll : MonoBehaviour
         //if stopped rolling
         if (rb.angularVelocity == Vector3.zero && val == 0)
         {
-            //DEMO - just pick a random number from 1 - 6
-            val = Random.Range(1, 7)
+            float OneSix = Mathf.Round(Vector3.Dot(transform.up,Vector3.up));
+            float ThreeFour = Mathf.Round(Vector3.Dot(transform.right, Vector3.up));
+            float TwoFive = Mathf.Round(Vector3.Dot(transform.forward, Vector3.up));
+
+            print (OneSix+ " "+ TwoFive+ " "+ ThreeFour);
+
+            if (OneSix == 1)
+            {
+                val = 6;
+            }
+            if (OneSix == -1)
+            {
+                val = 1;
+            }
+            if (ThreeFour == 1)
+            {
+                val = 4;
+            }
+            if (ThreeFour == -1)
+            {
+                val = 3;
+            }
+            if (TwoFive == 1)
+            {
+                val = 5;
+            }
+            if (TwoFive == -1)
+            {
+                val = 2;
+            }
         }
     }
 
