@@ -70,26 +70,26 @@ public class Player : MonoBehaviour
     }
 
     // Rolling
-    public void RollDice()
-    {
-        if (_canRoll)
-        {
-            if (_rollsRemaining > 1) { _totalRollValue = _gameManager.RollDice(); }
-            else if (_rollsRemaining == 1) { reRollButton.SetActive(false); }
+    //public void RollDice()
+    //{
+    //    if (_canRoll)
+    //    {
+    //        if (_rollsRemaining > 1) { _totalRollValue = _gameManager.RollDice(); }
+    //        else if (_rollsRemaining == 1) { reRollButton.SetActive(false); }
 
-            _rollsRemaining--;
-        }
-        else { Debug.Log("No more rolls left"); reRollButton.SetActive(false); }
-    }
-    public void AcceptRoll()
-    {
-        _canRoll = false;
-        _selectedTotal += _totalRollValue;
-        reRollButton.SetActive(false);
+    //        _rollsRemaining--;
+    //    }
+    //    else { Debug.Log("No more rolls left"); reRollButton.SetActive(false); }
+    //}
+    //public void AcceptRoll()
+    //{
+    //    _canRoll = false;
+    //    _selectedTotal += _totalRollValue;
+    //    reRollButton.SetActive(false);
 
-        _gameManager.EndDiceRoll();
-        updateSelectedTotalText();
-    }
+    //    _gameManager.EndDiceRoll();
+    //    updateSelectedTotalText();
+    //}
 
     // Placing
     public void Place()

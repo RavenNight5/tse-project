@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Menus")]
     [SerializeField] private GameObject mainMenu;
-    [SerializeField] private GameObject stackActions;
+    //[SerializeField] private GameObject stackActions;
     [SerializeField] private GameObject diceRoll;
     [SerializeField] private GameObject placed;
 
@@ -89,29 +89,21 @@ public class GameManager : MonoBehaviour
     public void PlayerSetCount(Slider slider) { PlayerCount = (int)slider.value; }
 
     // Set the value of the dice (called when submit pressed)
-    public void SetDice()
-    {
-        int[] die = new int[2];
+    //public void SetDice()
+    //{
+    //    int[] die = new int[2];
 
-        //if (dropdown.options[dropdown.value].text == "6, 6")
-        //{
-        //    die[0] = 6 ; die[1] = 6;
-        //}
-        //else if (dropdown.options[dropdown.value].text == "6, 4")
-        //{
-        //    die[0] = 6; die[1] = 4;
-        //}
-        die[0] = 6; die[1] = 6;
+    //    die[0] = 6; die[1] = 6;
 
-        diceRoll.GetComponent<DiceManager>().CreateDice(die);
-    }
+    //    diceRoll.GetComponent<DiceManager>().CreateDice(die);
+    //}
 
-    public int RollDice()
-    {
-        diceRoll.gameObject.SetActive(true);
+    //public int RollDice()
+    //{
+    //    diceRoll.gameObject.SetActive(true);
 
-        return _diceManager.RollDice();
-    }
+    //    return _diceManager.RollDice();
+    //}
 
     // When the player accepts their roll
     public void EndDiceRoll()
@@ -129,13 +121,13 @@ public class GameManager : MonoBehaviour
         _cardManager.GenerateCards();  // Generate pile of cards
         _cardManager.RandShuffle(800);  // Shuffle cards
 
-        SetDice();
+        //SetDice();
 
         CurrentPlayer = Players[_currentPlayer].GetComponent<Player>();
         CurrentPlayer.StartOfTurn();
 
-        stackActions.SetActive(true);
-        diceRoll.SetActive(false);
+        //stackActions.SetActive(true);
+        //diceRoll.SetActive(false);
 
         GameObject startingCard = _cardManager.PickStartingcard();
         startingCard.GetComponent<Card>().Flip();

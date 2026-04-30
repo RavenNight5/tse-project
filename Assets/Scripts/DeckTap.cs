@@ -8,6 +8,13 @@ public class DeckTap : MonoBehaviour
     [SerializeField] private string output = "pressed Deck";
     [SerializeField] private TMP_Text show;
 
+    [SerializeField] private CardManager _cardManager;
+
+    private void Start()
+    {
+        _cardManager = GameObject.FindGameObjectWithTag("CardManager").GetComponent<CardManager>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -19,7 +26,7 @@ public class DeckTap : MonoBehaviour
             // Check if the touch is on a UI element
             if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
             {
-                SceneManager.LoadScene("DieDemo");
+                //SceneManager.LoadScene("DieDemo");
                 return; // Ignore the touch if it's on a UI element
             }
             // Check if the touch phase just began (indicating the player has just touched the screen).
@@ -37,14 +44,13 @@ public class DeckTap : MonoBehaviour
                     GameObject touchedObject = hit.collider.gameObject;
 
                     //if the touched object is the Deck
-                    if (touchedObject.tag == "Stack")
+                    if (touchedObject.tag == "ARStack")
                     {
                         //prints the output message
                         print(output);
+                        //pulls card
+                        _cardManager.ButtonPressedPull();
 
-                        //DEMO show value in UI
-                        show.text = "pressed : " + Random.Range(1, 14);
-                        //end
                         return;
                     }
                 }
