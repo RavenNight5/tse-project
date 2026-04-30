@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private TMP_Text playerNumber;
     [SerializeField] private TMP_Text selectedTotal;
-    [SerializeField] private Button rollButton;
+    //[SerializeField] private Button rollButton;
     [SerializeField] private GameObject reRollButton;
 
     [SerializeField] private List<GameObject> selectedCards;  // List of the cards the player has selected in their hand
@@ -21,12 +21,13 @@ public class Player : MonoBehaviour
     private int _selectedTotal;  // Total value of the cards (and dice if been rolled) the player has selected
     private int _totalRollValue;
 
-    private int _rollsRemaining = 2;
-    private bool _canRoll = true;
+    //private int _rollsRemaining = 2;
+    //private bool _canRoll = true;
 
     private void Start()
     {
         _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        //rollButton = GameObject.FindGameObjectWithTag("RollBtn").GetComponent<Button>();
     }
 
     public void SetUpPlayer(int number)
@@ -147,9 +148,9 @@ public class Player : MonoBehaviour
     public void StartOfTurn()
     {
         gameObject.SetActive(true);
-        rollButton.interactable = true;
-        _rollsRemaining = 2;
-        _canRoll = true;
+        //rollButton.interactable = true;
+        //_rollsRemaining = 2;
+        //_canRoll = true;
     }
 
 

@@ -11,7 +11,6 @@ public class PhysicalDie : MonoBehaviour
     public int die1res = 0;
     public GameObject die2;     //die 2 & result
     public int die2res = 0;
-    public TMP_Text text;
 
     [SerializeField] private float spinForce = 10;
     [SerializeField] private float pushForce = 1;
@@ -44,7 +43,6 @@ public class PhysicalDie : MonoBehaviour
             {
                 //set the result to the sum
                 result = die1res + die2res;
-                text.text = "value : " + result;
             }
 
             //if the result is found & die still exsist
@@ -60,8 +58,6 @@ public class PhysicalDie : MonoBehaviour
 
     public void roll()
     {
-        //DEMO - to show output value
-        text.text = "value : " + "_";
 
         //clear old die from board
         Destroy(die1);

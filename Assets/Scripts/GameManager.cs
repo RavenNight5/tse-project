@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [Header("Menus")]
     [SerializeField] private GameObject mainMenu;
     //[SerializeField] private GameObject stackActions;
-    [SerializeField] private GameObject diceRoll;
+    //[SerializeField] private GameObject diceRoll;
     [SerializeField] private GameObject placed;
 
     private DiceManager _diceManager;
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         mainMenu.SetActive(true);
 
         _players = GameObject.FindGameObjectWithTag("Players").transform;
-        _diceManager = diceRoll.GetComponent<DiceManager>();
+        _diceManager = GameObject.FindGameObjectWithTag("DiceManager").GetComponent<DiceManager>();
         _placedManager = placed.GetComponent<PlacedManager>();
         _cardManager = GameObject.FindGameObjectWithTag("CardManager").GetComponent<CardManager>();
     }
@@ -106,10 +106,10 @@ public class GameManager : MonoBehaviour
     //}
 
     // When the player accepts their roll
-    public void EndDiceRoll()
-    {
-        diceRoll.gameObject.SetActive(false);
-    }
+    //public void EndDiceRoll()
+    //{
+    //    diceRoll.gameObject.SetActive(false);
+    //}
 
     // When submit is pressed, create a new game based on number of players selected
     public void NewGame()
