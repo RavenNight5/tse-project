@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private TMP_Text playerNumber;
     [SerializeField] private TMP_Text selectedTotal;
-    //[SerializeField] private Button rollButton;
+    [SerializeField] private Button rollButton;
     [SerializeField] private GameObject reRollButton;
 
     [SerializeField] private List<GameObject> selectedCards;  // List of the cards the player has selected in their hand
@@ -21,8 +21,8 @@ public class Player : MonoBehaviour
     private int _selectedTotal;  // Total value of the cards (and dice if been rolled) the player has selected
     private int _totalRollValue;
 
-    //private int _rollsRemaining = 2;
-    //private bool _canRoll = true;
+    private int _rollsRemaining = 2;
+    private bool _canRoll = true;
 
     private void Start()
     {
@@ -71,26 +71,26 @@ public class Player : MonoBehaviour
     }
 
     // Rolling
-    //public void RollDice()
-    //{
-    //    if (_canRoll)
-    //    {
-    //        if (_rollsRemaining > 1) { _totalRollValue = _gameManager.RollDice(); }
-    //        else if (_rollsRemaining == 1) { reRollButton.SetActive(false); }
+    public void RollDice()
+    {
+        if (_canRoll)
+        {
+            if (_rollsRemaining > 1) { _totalRollValue = _gameManager.RollDice(); }
+            else if (_rollsRemaining == 1) { reRollButton.SetActive(false); }
 
-    //        _rollsRemaining--;
-    //    }
-    //    else { Debug.Log("No more rolls left"); reRollButton.SetActive(false); }
-    //}
-    //public void AcceptRoll()
-    //{
-    //    _canRoll = false;
-    //    _selectedTotal += _totalRollValue;
-    //    reRollButton.SetActive(false);
+            _rollsRemaining--;
+        }
+        else { Debug.Log("No more rolls left"); reRollButton.SetActive(false); }
+    }
+    public void AcceptRoll()
+    {
+        _canRoll = false;
+        _selectedTotal += _totalRollValue;
+        reRollButton.SetActive(false);
 
-    //    _gameManager.EndDiceRoll();
-    //    updateSelectedTotalText();
-    //}
+        _gameManager.EndDiceRoll();
+        updateSelectedTotalText();
+    }
 
     // Placing
     public void Place()
@@ -148,9 +148,9 @@ public class Player : MonoBehaviour
     public void StartOfTurn()
     {
         gameObject.SetActive(true);
-        //rollButton.interactable = true;
-        //_rollsRemaining = 2;
-        //_canRoll = true;
+        rollButton.interactable = true;
+        _rollsRemaining = 2;
+        _canRoll = true;
     }
 
 

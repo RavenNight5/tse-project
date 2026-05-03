@@ -18,11 +18,6 @@ public class PhysicalDie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space)) //demo key -- replace with UI button
-
-        //{
-        //    roll();
-        //}
 
         //if die is in play
         if (die1 != null && die1.GetComponent<DieRoll>().val != 0)
