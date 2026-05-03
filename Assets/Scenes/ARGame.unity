@@ -505,6 +505,58 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2512387470890420967, guid: 48cb3fb68c91eb94999fd99957eb0cae, type: 3}
   m_PrefabInstance: {fileID: 331264285}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &284032854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 284032856}
+  - component: {fileID: 284032855}
+  m_Layer: 0
+  m_Name: DieManager
+  m_TagString: DiceManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &284032855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284032854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c922924973864ce4892af51466247a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhysicalDie
+  result: 0
+  dice: {fileID: 2898159044917385328, guid: d4ab3266fe1ecfe46839a10b679cdbc2, type: 3}
+  die1: {fileID: 0}
+  die1res: 0
+  die2: {fileID: 0}
+  die2res: 0
+  spinForce: 10
+  pushForce: 1
+--- !u!4 &284032856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284032854}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 473.222, y: 0, z: 510.23416}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &331264285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1214,8 +1266,6 @@ MonoBehaviour:
   Players: []
   playerPrefab: {fileID: 5269264993001852686, guid: 874fbe7bec7807b4ca17422b6257d931, type: 3}
   mainMenu: {fileID: 115827738}
-  stackActions: {fileID: 1967224804}
-  diceRoll: {fileID: 2053416522}
   placed: {fileID: 1027145062}
 --- !u!1 &532213065
 GameObject:
@@ -5737,3 +5787,4 @@ SceneRoots:
   - {fileID: 331264285}
   - {fileID: 1436758742}
   - {fileID: 495860046}
+  - {fileID: 284032856}
