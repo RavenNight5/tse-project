@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class DeckTap : MonoBehaviour
 {
     [SerializeField] private string output = "pressed Deck";
-    [SerializeField] private TMP_Text show;
+    //[SerializeField] private TMP_Text show;
 
     [SerializeField] private CardManager _cardManager;
 
