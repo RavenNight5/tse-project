@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.XR.ARSubsystems;
@@ -11,6 +12,9 @@ public class PhysicalDie : MonoBehaviour
     public int die1res = 0;
     public GameObject die2;     //die 2 & result
     public int die2res = 0;
+
+    public bool rollFinished = false;    //if the die has finished rolling
+
 
     [SerializeField] private Transform Cam;
     [SerializeField] private float spinForce = 10;
@@ -38,6 +42,8 @@ public class PhysicalDie : MonoBehaviour
             {
                 //set the result to the sum
                 result = die1res + die2res;
+                rollFinished = true;
+                UpdateDiceUI();
             }
 
             //if the result is found & die still exsist
@@ -46,7 +52,6 @@ public class PhysicalDie : MonoBehaviour
                 //clear die after a second
                 Destroy(die1, 1);
                 Destroy(die2, 1);
-
             }
         }
     }
@@ -79,6 +84,22 @@ public class PhysicalDie : MonoBehaviour
         //sets linear velocity to push away
         die1.GetComponent<Rigidbody>().linearVelocity = Cam.forward * pushForce;
         die2.GetComponent<Rigidbody>().linearVelocity = Cam.forward * pushForce;
+    }
 
+    public int GetResults()
+    {
+        int sum = die1res + die2res;
+        return sum;
+    }
+
+    public void UpdateDiceUI()
+    {
+        GameObject diceUI = GameObject.FindGameObjectWithTag("DiceUI"); // GameCanvas.GameView.Dice.RolledDice
+        TextMeshProUGUI dice1text = diceUI.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>(); // Text of Dice1
+        TextMeshProUGUI dice2text = diceUI.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>(); // Text of Dice2
+
+        dice1text.SetText(die1res.ToString());
+        dice2text.SetText(die2res.ToString());
     }
 }
+

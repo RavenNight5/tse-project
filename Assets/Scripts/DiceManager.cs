@@ -10,6 +10,7 @@ public class DiceManager : MonoBehaviour
 
     private List<GameObject> _currentDice = new List<GameObject>();
 
+
     public void CreateDice(int[] maxValues)
     {
         // Create new dice and set their max values, place them in the invisible diceHolder transform

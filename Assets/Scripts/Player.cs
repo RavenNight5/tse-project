@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
     {
         if (_canRoll)
         {
-            if (_rollsRemaining > 1) { _totalRollValue = _gameManager.RollDice(); }
+            if (_rollsRemaining > 1) { StartCoroutine(_gameManager.RollDice(result => _totalRollValue = result)); }
             else if (_rollsRemaining == 1) { reRollButton.SetActive(false); }
 
             _rollsRemaining--;

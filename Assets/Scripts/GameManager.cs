@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     private DiceManager _diceManager;
     private PlacedManager _placedManager;
     private CardManager _cardManager;
+    private PhysicalDie _physDice;
 
     private Transform _players;
     private int _currentPlayer = 0;  // Index of the current player (who's turn it is)
@@ -40,6 +42,8 @@ public class GameManager : MonoBehaviour
         _diceManager = diceRoll.GetComponent<DiceManager>();
         _placedManager = placed.GetComponent<PlacedManager>();
         _cardManager = GameObject.FindGameObjectWithTag("CardManager").GetComponent<CardManager>();
+
+        _physDice = GameObject.FindGameObjectWithTag("PhysDie").GetComponent<PhysicalDie>();
     }
 
     private void createPlayers()
@@ -106,11 +110,22 @@ public class GameManager : MonoBehaviour
         diceRoll.GetComponent<DiceManager>().CreateDice(die);
     }
 
-    public int RollDice()
+    public IEnumerator RollDice(System.Action<int> onResult)
     {
         diceRoll.gameObject.SetActive(true);
 
-        return _diceManager.RollDice();
+        // return _diceManager.RollDice(); OLD DICE ROLL
+
+        _physDice.roll();
+
+        yield return new WaitUntil(() => _physDice.rollFinished);
+
+        int result = _physDice.GetResults();
+        print("Dice result: " + result);
+
+        _physDice.rollFinished = false;
+
+        onResult?.Invoke(result);
     }
 
     // When the player accepts their roll
@@ -129,7 +144,7 @@ public class GameManager : MonoBehaviour
         _cardManager.GenerateCards();  // Generate pile of cards
         _cardManager.RandShuffle(800);  // Shuffle cards
 
-        SetDice();
+        //SetDice();
 
         CurrentPlayer = Players[_currentPlayer].GetComponent<Player>();
         CurrentPlayer.StartOfTurn();
