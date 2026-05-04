@@ -50,7 +50,7 @@ public class PhysicalDie : MonoBehaviour
 
     public void roll()
     {
-
+        rollFinished = false;
         //clear old die from board
         Destroy(die1);
         Destroy(die2);

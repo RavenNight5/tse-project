@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     private GameManager _gameManager;
     private int _selectedTotal;  // Total value of the cards (and dice if been rolled) the player has selected
-    private int _totalRollValue;
+    [SerializeField] private int _totalRollValue;
 
     private int _rollsRemaining = 2;
     private bool _canRoll = true;
