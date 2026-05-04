@@ -45,14 +45,6 @@ public class PhysicalDie : MonoBehaviour
                 rollFinished = true;
                 UpdateDiceUI();
             }
-
-            //if the result is found & die still exsist
-            if (result != 0 && die1 != null && die2 != null)
-            {
-                //clear die after a second
-                Destroy(die1, 1);
-                Destroy(die2, 1);
-            }
         }
     }
 
@@ -100,6 +92,16 @@ public class PhysicalDie : MonoBehaviour
 
         dice1text.SetText(die1res.ToString());
         dice2text.SetText(die2res.ToString());
+    }
+
+    //clears all of the dices data for the next player
+    public void ClearDice()
+    {
+        die1res = 0;
+        die2res = 0;
+        result = 0;
+        Destroy(die1, 1);
+        Destroy(die2, 1);
     }
 }
 

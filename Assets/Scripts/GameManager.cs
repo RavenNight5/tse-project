@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
     public void EndDiceRoll()
     {
         diceRoll.gameObject.SetActive(false);
+        _physDice.ClearDice();
     }
 
     // When submit is pressed, create a new game based on number of players selected
