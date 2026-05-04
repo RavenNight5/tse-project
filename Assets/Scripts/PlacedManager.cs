@@ -5,8 +5,9 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class PlacedManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text placedValue;
+    [SerializeField] public int placedValue;
     [SerializeField] private Transform placedCards;
+    private GameManager _gameManager;
 
     private List<GameObject> _placedCards = new List<GameObject>();  // Holds game objects of the placed/played cards
 
@@ -15,7 +16,7 @@ public class PlacedManager : MonoBehaviour
     {
         int value = card.GetComponent<Card>().GetNumber();
 
-        placedValue.SetText(value.ToString());
+        placedValue = value;
         card.transform.SetParent(placedCards, false);
         card.transform.position = placedCards.position;
         _placedCards.Add(card);
@@ -23,7 +24,7 @@ public class PlacedManager : MonoBehaviour
 
     public void PlaceCards(int value, List<GameObject> cards)
     {
-        placedValue.SetText(value.ToString());
+        placedValue = value;
         
         foreach (var card in cards)
         {

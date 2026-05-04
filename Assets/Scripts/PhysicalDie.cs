@@ -12,13 +12,13 @@ public class PhysicalDie : MonoBehaviour
     public GameObject die2;     //die 2 & result
     public int die2res = 0;
 
+    [SerializeField] private Transform Cam;
     [SerializeField] private float spinForce = 10;
     [SerializeField] private float pushForce = 1;
 
     // Update is called once per frame
     void Update()
     {
-
         //if die is in play
         if (die1 != null && die1.GetComponent<DieRoll>().val != 0)
         {
@@ -44,8 +44,8 @@ public class PhysicalDie : MonoBehaviour
             if (result != 0 && die1 != null && die2 != null)
             {
                 //clear die after a second
-                //Destroy(die1, 1);
-                //Destroy(die2, 1);
+                Destroy(die1, 1);
+                Destroy(die2, 1);
 
             }
         }
@@ -64,8 +64,8 @@ public class PhysicalDie : MonoBehaviour
         result = 0;
 
         //instance new die
-        die1 = Instantiate(dice, transform.position, Quaternion.identity);
-        die2 = Instantiate(dice, transform.position, Quaternion.identity);
+        die1 = Instantiate(dice, Cam.position, Quaternion.identity);
+        die2 = Instantiate(dice, Cam.position, Quaternion.identity);
 
         //link dice to the manager
         die1.GetComponent<DieRoll>().linkManager(this);
@@ -77,8 +77,8 @@ public class PhysicalDie : MonoBehaviour
         die2.GetComponent<Rigidbody>().angularVelocity = new Vector3(Random.value * spinForce, Random.value * spinForce, Random.value * spinForce);
 
         //sets linear velocity to push away
-        die1.GetComponent<Rigidbody>().linearVelocity = Vector3.forward * pushForce;
-        die2.GetComponent<Rigidbody>().linearVelocity = Vector3.forward * pushForce;
+        die1.GetComponent<Rigidbody>().linearVelocity = Cam.forward * pushForce;
+        die2.GetComponent<Rigidbody>().linearVelocity = Cam.forward * pushForce;
 
     }
 }

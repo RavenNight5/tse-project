@@ -12,6 +12,8 @@ TagManager:
   - DiceManager
   - Placed
   - CardManager
+  - ARStack
+  - PlacedManager
   layers:
   - Default
   - TransparentFX
