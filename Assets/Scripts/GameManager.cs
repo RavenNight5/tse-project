@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject diceRoll;
     [SerializeField] private GameObject placed;
     [SerializeField] private GameObject win;
+    [SerializeField] private GameObject buffer;
+
+    private bool gameReady = false;
 
     [Header("Veriables")]
     [SerializeField] private int startingCards = 5;
@@ -45,6 +48,7 @@ public class GameManager : MonoBehaviour
         mainMenu.SetActive(true);
         win.SetActive(false);
         stackActions.SetActive(false);
+        buffer.SetActive(false);
 
         _players = GameObject.FindGameObjectWithTag("Players").transform;
         _diceManager = diceRoll.GetComponent<DiceManager>();
@@ -70,8 +74,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Buffer()
+    {
+        if (gameReady)
+        {
+            buffer.SetActive(true);
+            stackActions.SetActive(false);
+        }
+        else
+        {
+            NextPlayer();
+        }
+        
+    }
+
     public void NextPlayer() 
     {
+        buffer.SetActive(false);
+        stackActions.SetActive(true);
+
         if (_currentPlayer < Players.Count - 1)
         {
             _currentPlayer++;
@@ -82,7 +103,6 @@ public class GameManager : MonoBehaviour
         }
         CurrentPlayer = Players[_currentPlayer].GetComponent<Player>();
         CurrentPlayer.StartOfTurn();
-
         UpdateGoldCards();
     }
 
@@ -187,6 +207,8 @@ public class GameManager : MonoBehaviour
         _placedManager.ResetPlaced(startingCard);
 
         UpdateGoldCards();
+        
+        gameReady = true;
     }
 
     public void UpdateGoldCards()

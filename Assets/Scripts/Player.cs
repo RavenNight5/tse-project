@@ -21,8 +21,9 @@ public class Player : MonoBehaviour
     [SerializeField] private int _selectedTotal;  // Total value of the cards (and dice if been rolled) the player has selected
     [SerializeField] private int _totalRollValue;
 
-    private int _rollsRemaining = 2;
-    private bool _canRoll = true;
+    [SerializeField] private int _maxRerolls = 2;
+    [SerializeField] private int _rollsRemaining = 2;
+    [SerializeField] private bool _canRoll = true;
 
     private void Start()
     {
@@ -76,10 +77,12 @@ public class Player : MonoBehaviour
     // Rolling
     public void RollDice()
     {
+        print("roll");
         if (_canRoll)
         {
-            if (_rollsRemaining > 1) { StartCoroutine(_gameManager.RollDice(result => _totalRollValue = result)); }
-            else if (_rollsRemaining == 1) { reRollButton.SetActive(false); }
+            print("canRoll");
+            if (_rollsRemaining > 0) { StartCoroutine(_gameManager.RollDice(result => _totalRollValue = result)); print("Rolled"); }
+            else { reRollButton.SetActive(false); print("noRoll"); }
 
             _rollsRemaining--;
         }
@@ -136,7 +139,6 @@ public class Player : MonoBehaviour
     // Skipping/end of turn
     public void EndOfTurn()
     {
-        print("ending turn");
         if (selectedCards.Count > 0)
         {
             foreach (var card in selectedCards)
@@ -153,15 +155,16 @@ public class Player : MonoBehaviour
 
         gameObject.SetActive(false);
 
-        print("before nextPlayer");
-        _gameManager.NextPlayer();
+        _gameManager.Buffer();
     }
 
     public void StartOfTurn()
     {
         gameObject.SetActive(true);
+
+        //Dice
         rollButton.interactable = true;
-        _rollsRemaining = 2;
+        _rollsRemaining = _maxRerolls + 1;
         _canRoll = true;
     }
 
