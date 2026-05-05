@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
         card.GetComponent<Card>().Flip();
         card.transform.SetParent(playerHand);
         Hand.Add(card);
+
+        _gameManager.UpdateGoldCards();
     }
 
     public string CheckIfCanSelect(int value)
