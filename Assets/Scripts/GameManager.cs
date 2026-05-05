@@ -82,6 +82,8 @@ public class GameManager : MonoBehaviour
         }
         CurrentPlayer = Players[_currentPlayer].GetComponent<Player>();
         CurrentPlayer.StartOfTurn();
+
+        UpdateGoldCards();
     }
 
     public int GetCurrentPlacedValue() { return _currentPlacedValue; }
@@ -96,6 +98,8 @@ public class GameManager : MonoBehaviour
             _currentPlacedValue = value;
 
         _placedManager.PlaceCards(_currentPlacedValue, cards);
+
+        UpdateGoldCards();
     }
 
     // Set the value of the player count (called when submit pressed)
@@ -181,6 +185,25 @@ public class GameManager : MonoBehaviour
         GameObject startingCard = _cardManager.PickStartingcard();
         startingCard.GetComponent<Card>().Flip();
         _placedManager.ResetPlaced(startingCard);
+
+        UpdateGoldCards();
+    }
+
+    public void UpdateGoldCards()
+    {
+        if (CurrentPlayer == null) return;
+
+        foreach (GameObject cardObj in CurrentPlayer.Hand)
+        {
+            if (cardObj == null) continue;
+
+            Card card = cardObj.GetComponent<Card>();
+            if (card == null) continue;
+
+            bool matchesTotal = card.GetNumber() == _currentPlacedValue;
+
+            card.SetGold(matchesTotal);
+        }
     }
 
     //if game is won
