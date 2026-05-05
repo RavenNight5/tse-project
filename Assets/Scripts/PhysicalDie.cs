@@ -43,8 +43,17 @@ public class PhysicalDie : MonoBehaviour
                 //set the result to the sum
                 result = die1res + die2res;
                 rollFinished = true;
-                UpdateDiceUI();
             }
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (die1 != null && die1.transform.position.y < 0f)
+        {
+            Vector3 pos = die1.transform.position;
+            pos.y = 0f;
+            die1.transform.position = pos;
         }
     }
 

@@ -155,6 +155,7 @@ public class GameManager : MonoBehaviour
 
         int result = _physDice.GetResults();
         print("Dice result: " + result);
+        _physDice.UpdateDiceUI();
 
         _physDice.rollFinished = false;
 
