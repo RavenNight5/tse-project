@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameReady)
         {
+            if (!win.activeSelf)
             buffer.SetActive(true);
             stackActions.SetActive(false);
         }
