@@ -11,6 +11,7 @@ public class Card : MonoBehaviour
     [SerializeField] private GameObject defaultCard;
     [SerializeField] private GameObject selectedCard;
     [SerializeField] private GameObject hiddenCard;
+    [SerializeField] private GameObject goldCard;
 
     [SerializeField] private TMP_Text[] numberLabels;
 
@@ -35,6 +36,11 @@ public class Card : MonoBehaviour
         defaultCard.SetActive(false);
         selectedCard.SetActive(false);
         hiddenCard.SetActive(true);
+
+        if (goldCard != null)
+        {
+            goldCard.SetActive(false);
+        }
 
         _cardManager = cm;
     }
@@ -106,4 +112,11 @@ public class Card : MonoBehaviour
     public int GetNumber() { return _number; }
 
     public int GetCustomCount() { if (_customCount >= 2 && _customCount <= 14) { return _customCount; } else { return 0; } }
+
+    public void SetGold(bool active)
+    {
+        if (goldCard == null) return;
+
+        goldCard.SetActive(active && !FaceDown);
+    }
 }
