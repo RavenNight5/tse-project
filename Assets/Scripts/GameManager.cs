@@ -210,6 +210,7 @@ public class GameManager : MonoBehaviour
     public void Win()
     {
         win.SetActive(true);
-        win.transform.GetChild(0).GetComponent<TMP_Text>().text = "Player " + (_currentPlayer + 1);
+        stackActions.SetActive(false);
+        win.transform.GetChild(1).GetComponent<TMP_Text>().text = "Player " + (_currentPlayer + 1);
     }
 }
