@@ -19,19 +19,16 @@ public class Card : MonoBehaviour
 
     private CardManager _cardManager;
 
-    ////constructor
-    //public Card(int number)
-    //{
-    //    this._number = number;
-
-    //    CreateCard();
-    //}
-
+    //creates the card
     public void CreateCard(int number, CardManager cm)
     {
+        //gets the number
         _number = number;
+
+        //for each label on the card
         foreach (var label in numberLabels)
         {
+            //set the label to said number
             label.SetText(_number.ToString());
         }
 
@@ -63,6 +60,7 @@ public class Card : MonoBehaviour
     {
         if (transform.parent.tag != "PlayerHand") { return; }
 
+        //if not selected
         if (Selected == false)
         {
             string canSelect = _cardManager.CheckIfCanSelect(_number);

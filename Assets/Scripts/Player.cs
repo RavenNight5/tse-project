@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     private GameManager _gameManager;
     private int _selectedTotal;  // Total value of the cards (and dice if been rolled) the player has selected
-    private int _totalRollValue;
+    [SerializeField] private int _totalRollValue;
 
     private int _rollsRemaining = 2;
     private bool _canRoll = true;
@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        //rollButton = GameObject.FindGameObjectWithTag("RollBtn").GetComponent<Button>();
     }
 
     public void SetUpPlayer(int number)
@@ -74,7 +75,7 @@ public class Player : MonoBehaviour
     {
         if (_canRoll)
         {
-            if (_rollsRemaining > 1) { _totalRollValue = _gameManager.RollDice(); }
+            if (_rollsRemaining > 1) { StartCoroutine(_gameManager.RollDice(result => _totalRollValue = result)); }
             else if (_rollsRemaining == 1) { reRollButton.SetActive(false); }
 
             _rollsRemaining--;

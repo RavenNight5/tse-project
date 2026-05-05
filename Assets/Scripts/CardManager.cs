@@ -282,36 +282,6 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    //temporary debug function used to give basic controls to the functions
-    //please change back input handling to the Input System Package when no longer in use
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.S))
-    //    {
-    //        RandShuffle(shuffleCount);
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.LeftShift))
-    //    {
-    //        GenerateCards();
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        showCards();
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.W))
-    //    {
-    //        var pulled = PullCard(true);
-    //        if (pulled != null)
-    //        {
-    //            print(pulled.GetComponent<Card>().GetNumber());
-    //        }
-    //        else
-    //        {
-    //            print("Pulled card was null.");
-    //        }
-    //    }
-    //}
-
     public void ButtonPressedGenerate() { GenerateCards(); }
     public void ButtonPressedShow() { showCards(); }
     public void ButtonPressedPull() { var c = PullCard(true); if (c != null) c.GetComponent<Card>().GetNumber(); }
