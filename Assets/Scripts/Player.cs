@@ -17,8 +17,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private List<GameObject> selectedCards;  // List of the cards the player has selected in their hand
 
-    private GameManager _gameManager;
-    private int _selectedTotal;  // Total value of the cards (and dice if been rolled) the player has selected
+    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private int _selectedTotal;  // Total value of the cards (and dice if been rolled) the player has selected
     [SerializeField] private int _totalRollValue;
 
     private int _rollsRemaining = 2;
@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     public void SetUpPlayer(int number)
     {
         playerNumber.SetText("Player " +  (number + 1).ToString());
+        _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     public void AddCardToHand(GameObject card)
@@ -116,18 +117,26 @@ public class Player : MonoBehaviour
                 Hand.Remove(card);
             }
 
+            //if hand is now empty
+            if (Hand.Count == 0)
+            {
+                _gameManager.Win();
+            }
+
             EndOfTurn();
         }
         else
         {
             Debug.Log($"Total is too small! Must be equal to {_gameManager.GetCurrentPlacedValue()} or higher");
         }
+
     }
 
 
     // Skipping/end of turn
     public void EndOfTurn()
     {
+        print("ending turn");
         if (selectedCards.Count > 0)
         {
             foreach (var card in selectedCards)
@@ -144,6 +153,7 @@ public class Player : MonoBehaviour
 
         gameObject.SetActive(false);
 
+        print("before nextPlayer");
         _gameManager.NextPlayer();
     }
 

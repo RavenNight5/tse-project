@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +22,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject stackActions;
     [SerializeField] private GameObject diceRoll;
     [SerializeField] private GameObject placed;
+    [SerializeField] private GameObject win;
+
+    [Header("Veriables")]
+    [SerializeField] private int startingCards = 5;
 
     private DiceManager _diceManager;
     private PlacedManager _placedManager;
@@ -37,6 +43,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         mainMenu.SetActive(true);
+        win.SetActive(false);
+        stackActions.SetActive(false);
 
         _players = GameObject.FindGameObjectWithTag("Players").transform;
         _diceManager = diceRoll.GetComponent<DiceManager>();
@@ -44,6 +52,8 @@ public class GameManager : MonoBehaviour
         _cardManager = GameObject.FindGameObjectWithTag("CardManager").GetComponent<CardManager>();
 
         _physDice = GameObject.FindGameObjectWithTag("PhysDie").GetComponent<PhysicalDie>();
+
+        
     }
 
     private void createPlayers()
@@ -70,7 +80,6 @@ public class GameManager : MonoBehaviour
         {
             _currentPlayer = 0;
         }
-        
         CurrentPlayer = Players[_currentPlayer].GetComponent<Player>();
         CurrentPlayer.StartOfTurn();
 
@@ -152,7 +161,23 @@ public class GameManager : MonoBehaviour
         //SetDice();
 
         CurrentPlayer = Players[_currentPlayer].GetComponent<Player>();
+
+
+
         CurrentPlayer.StartOfTurn();
+
+        //loops over all players
+        for (int i = 0; i < PlayerCount; i++)
+        {
+            //grabs x amount of cards from the deck
+            for (int j = 0; j < startingCards; j++)
+            {
+                _cardManager.ButtonPressedPull();
+            }
+            //incriments the player by 1
+            CurrentPlayer.EndOfTurn();
+        }
+
 
         stackActions.SetActive(true);
         diceRoll.SetActive(false);
@@ -179,5 +204,13 @@ public class GameManager : MonoBehaviour
 
             card.SetGold(matchesTotal);
         }
+    }
+
+    //if game is won
+    public void Win()
+    {
+        win.SetActive(true);
+        stackActions.SetActive(false);
+        win.transform.GetChild(1).GetComponent<TMP_Text>().text = "Player " + (_currentPlayer + 1);
     }
 }
