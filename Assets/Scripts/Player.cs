@@ -77,14 +77,18 @@ public class Player : MonoBehaviour
     // Rolling
     public void RollDice()
     {
-        print("roll");
         if (_canRoll)
         {
-            print("canRoll");
-            if (_rollsRemaining > 0) { StartCoroutine(_gameManager.RollDice(result => _totalRollValue = result)); print("Rolled"); }
-            else { reRollButton.SetActive(false); print("noRoll"); }
+            if (_rollsRemaining > 0) { StartCoroutine(_gameManager.RollDice(result => _totalRollValue = result));}
+            else { reRollButton.SetActive(false); }
 
             _rollsRemaining--;
+
+            //if no rolls left, make button not interactable
+            if (_rollsRemaining <= 0)
+            {
+                reRollButton.GetComponent<Button>().interactable = false;
+            }
         }
         else { Debug.Log("No more rolls left"); reRollButton.SetActive(false); }
     }
@@ -164,6 +168,7 @@ public class Player : MonoBehaviour
 
         //Dice
         rollButton.interactable = true;
+        reRollButton.GetComponent<Button>().interactable = true;
         _rollsRemaining = _maxRerolls + 1;
         _canRoll = true;
     }

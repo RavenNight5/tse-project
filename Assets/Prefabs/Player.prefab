@@ -1477,7 +1477,12 @@ MonoBehaviour:
   rollButton: {fileID: 7379494455272129959}
   reRollButton: {fileID: 7059331904168676180}
   selectedCards: []
+  _gameManager: {fileID: 0}
+  _selectedTotal: 0
   _totalRollValue: 0
+  _maxRerolls: 2
+  _rollsRemaining: 2
+  _canRoll: 1
 --- !u!1 &6698729645459681679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1890,7 +1895,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
