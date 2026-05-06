@@ -23,7 +23,7 @@ public class PlacedManager : MonoBehaviour
 
     public void PlaceCards(int value, List<GameObject> cards)
     {
-        placedValue = cards[cards.Count - 1].GetComponent<Card>().GetNumber();
+        placedValue = value;
         
         foreach (var card in cards)
         {
@@ -33,5 +33,13 @@ public class PlacedManager : MonoBehaviour
             card.transform.position = placedCards.position;
             _placedCards.Add(card);
         }
+    }
+
+    public int GetTopCard()
+    {
+        if (_placedCards.Count == 0) return 0;
+
+        int value = _placedCards[_placedCards.Count -1].GetComponent<Card>().GetNumber();
+        return value;
     }
 }

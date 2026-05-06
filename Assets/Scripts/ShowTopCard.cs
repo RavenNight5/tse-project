@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class PullNumber : MonoBehaviour
+public class ShowTopCard : MonoBehaviour
 {
     private TMP_Text text;
     private PlacedManager placedManager;
@@ -14,9 +14,6 @@ public class PullNumber : MonoBehaviour
 
     private void Update()
     {
-        if (placedManager != null)
-        {
-            text.text = placedManager.placedValue.ToString();
-        }
+        text.text = "Top Card: " + placedManager.GetTopCard();
     }
 }

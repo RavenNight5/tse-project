@@ -113,10 +113,15 @@ public class GameManager : MonoBehaviour
     // Player must press to place until their value is high enough, otherwise they must skip
     public void PlaceCards(int value, List<GameObject> cards)
     {
-        if (_currentPlacedValue == value)  // Reset pile
+        //if gold card used
+        if (cards.Count == 1 && cards[0].GetComponent<Card>().GetNumber() == _placedManager.GetTopCard())  // Reset pile
             _currentPlacedValue = 0;
+
+
+        //else
         else if (_currentPlacedValue < value)
             _currentPlacedValue = value;
+
 
         _placedManager.PlaceCards(_currentPlacedValue, cards);
 
@@ -131,14 +136,6 @@ public class GameManager : MonoBehaviour
     {
         int[] die = new int[2];
 
-        //if (dropdown.options[dropdown.value].text == "6, 6")
-        //{
-        //    die[0] = 6 ; die[1] = 6;
-        //}
-        //else if (dropdown.options[dropdown.value].text == "6, 4")
-        //{
-        //    die[0] = 6; die[1] = 4;
-        //}
         die[0] = 6; die[1] = 6;
 
         diceRoll.GetComponent<DiceManager>().CreateDice(die);
@@ -224,7 +221,7 @@ public class GameManager : MonoBehaviour
             Card card = cardObj.GetComponent<Card>();
             if (card == null) continue;
 
-            bool matchesTotal = card.GetNumber() == _currentPlacedValue;
+            bool matchesTotal = card.GetNumber() == _placedManager.GetTopCard();
 
             card.SetGold(matchesTotal);
         }

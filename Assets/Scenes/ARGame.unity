@@ -6145,7 +6145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardManager
   CardPrefab: {fileID: 4256157834671637752, guid: 1ce0a6b1e2437d743bfe81203b1f89a5, type: 3}
   cardsMin: 2
-  cardsMax: 10
+  cardsMax: 14
   cardCount: 4
   specificCards: []
   shuffleCount: 1000
