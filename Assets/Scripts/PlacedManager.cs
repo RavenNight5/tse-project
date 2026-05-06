@@ -7,7 +7,6 @@ public class PlacedManager : MonoBehaviour
 {
     [SerializeField] public int placedValue;
     [SerializeField] private Transform placedCards;
-    private GameManager _gameManager;
 
     private List<GameObject> _placedCards = new List<GameObject>();  // Holds game objects of the placed/played cards
 
@@ -24,7 +23,7 @@ public class PlacedManager : MonoBehaviour
 
     public void PlaceCards(int value, List<GameObject> cards)
     {
-        placedValue = value;
+        placedValue = cards[cards.Count - 1].GetComponent<Card>().GetNumber();
         
         foreach (var card in cards)
         {
